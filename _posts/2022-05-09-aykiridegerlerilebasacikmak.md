@@ -6,35 +6,34 @@ author:
 date: 2022-05-09
 categories: [ML]
 tags: []     # TAG names should always be lowercase
+toc: true
 ---
-
-# Aykırı Değerlerle Başa Çıkmak
 
 ![image.png](https://miro.medium.com/max/1400/1*xzpXzg2TB9uoXRUdIXBe6Q.jpeg)
 
 Bu yazımızda veri ön işlemenin önemli adımlarından biri olan aykırı değer sorununu python uygulaması ile nasıl çözebileceğimizi ele alacağız.
 
-###### "Verileriniz kötüyse, makine öğrenimi araçlarınız işe yaramaz." (harvard business review)
+### "Verileriniz kötüyse, makine öğrenimi araçlarınız işe yaramaz." (harvard business review)
 
 Genel olarak, makine öğrenmesi öğrenenler için 🙂, veri ön işlemenin sonunda verilerinizi modele fit etmek en heyecan verici kısımdır. Ne yazık ki makine öğrenmesi çalışmalarının büyük bir kısmı verilerin model için hazırlanmasından oluşur. Aykırı değerlerle uğraşmak, özellik mühendisliğinin ve veri ön işlemenin önemli bir parçasıdır. Bunun için aykırı değerlerle nasıl başa çıkabileceğimize bir göz atalım.
 
-#### Aykırı Değerler ve Yaklaşım Türleri
+# Aykırı Değerler ve Yaklaşım Türleri
 
 Aykırı değerler, veri kümesinin genel yapısını bozan ve doğrusal modellerde sorunlara neden olan verilerdir. Aykırı değerlerle başa çıkmak için farklı yöntemler denenebilir.
 
-##### Sektör Bilgisi
+# Sektör Bilgisi
 
 Bunlardan biri, sektör bilginize dayanarak, uğraştığınız sektöre ait bir veri setinde sahip olduğunuz verilerin eşik değerlerini belirlemektir. (Kiralık evler verisi ile uğraştığınızda bir evin metrekaresi için aykırı bir değer belirlemek gibi düşünebiliriz.)
 
-##### Standart sapma
+# Standart sapma
 
 Veya verilerinizi gözden geçirdikten sonra standart sapmanızı kontrol eder ve ortalamadan belirli (örn. 2.5 standart sapma) standart sapma uzakta olan değerleri aykırı değerler olarak tanımlarsınız.
 
-##### Z-Skoru
+# Z-Skoru
 
 Z-puanı yönteminde ortalama 0 kabul edilir, ortalamadan bir standart sapma 1 z puanıdır. Bir eşik z-skor değeri belirlenir ve bu değer baz alınarak aykırı değerler hesaplanır.
 
-##### Boxplot
+# Boxplot
 
 ![image.png](https://miro.medium.com/max/1400/1*i9b6wYv35jlr0DrcgZ3ZSQ.png)
 
@@ -46,7 +45,7 @@ alt limit = q1–1.5 x iqr
 
 IQR = q3 — q1
 
-#### Kutu Grafiği Yönteminin Uygulanması
+# Kutu Grafiği Yönteminin Uygulanması
 
 Gerekli import işlemlerini yaptıktan sonra veri ön işlemeye başlayabiliriz.
 
@@ -151,11 +150,11 @@ Daha önce belirtildiği gibi, boxplot yöntemi yalnızca sayısal verilerde ayk
 outlier_thresholds(df, num_cols)
 ```
 
-#### Aykırı Değerler Sorununu Çözme
+# Aykırı Değerler Sorununu Çözme
 
 Aykırı değerler sorununun mevcut duruma göre farklı çözümleri vardır. Bu durumda aykırı değerlerden kurtulmak için onları silebilir, yok sayabilir veya eşikler değerler ile yeniden atayabiliriz.
 
-##### Silme
+# Silme
 
 ```python
 outlier_thresholds(df, "Age")
@@ -164,7 +163,7 @@ df["Age"] = df[~((df["Age"] < low) | (df["Age"] > up))]
 #Yukarıdaki seçim işleminde kullandığımız “~” işareti sayesinde aykırı olmayan değerleri seçiyoruz.
 ```
 
-##### Eşiklerle Değerler ile Yeniden Atama
+# Eşiklerle Değerler ile Yeniden Atama
 
 Bazı senaryolarda, aykırı değerlere sahip diğer satır verileri önemli olduğunda, bunları silmek yerine baskılamamız gerekebilir. Bu gibi durumlarda, aykırı değerleri eşiklerle değiştiririz.
 
@@ -176,7 +175,7 @@ df.loc[(df["Age"] > up), "Age"] = up_limit #upper treshold
 df.loc[(df["Age"] < low), "Age"] = low_limit #lower treshold
 ```
 
-##### Yoksaymak
+# Yoksaymak
 
 Ancak ağaç yapılarını ele aldığımızda, modelimiz için bir sorun teşkil etmedikleri için aykırı değerleri görmezden geliyoruz. Özellikle ağaç modelleri model eğitme süresinde uzama oluşturabilmesi dışında aykırı değerlere karşı duyarsızdır.
 
@@ -184,7 +183,7 @@ Bu yazıda, veri ön işlemenin önemli bir parçası olan aykırı değerlerle 
 
 Sormak istediğiniz sorular veya eklemek istediğiniz eleştirileriniz varsa yazmaktan çekinmeyin… 🤙🏻
 
-#### Kaynaklar
+# Kaynaklar
 
 “Box Plot Diagram to Identify Outliers.” n.d. Accessed April 14, 2022. https://www.whatissixsigma.net/box-plot-diagram-to-identify-outliers/.
 
