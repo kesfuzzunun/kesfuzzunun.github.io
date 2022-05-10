@@ -1,5 +1,8 @@
 ---
 title: Aykırı Değerlerle Başa Çıkmak
+author:
+  name: Mehmet Ali Akkın
+  link: https://medium.com/@maliakkin
 date: 2022-05-09
 categories: [ML]
 tags: []     # TAG names should always be lowercase
